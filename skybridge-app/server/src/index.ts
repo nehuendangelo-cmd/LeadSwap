@@ -5,7 +5,7 @@ import express, { type Express } from "express";
 import { widgetsDevServer } from "skybridge/server";
 import type { ViteDevServer } from "vite";
 import { mcpAuthMetadataRouter } from "@modelcontextprotocol/sdk/server/auth/router.js";
-import { requireBearerAuth } from "@modelcontextprotocol/sdk/server/auth/middleware/bearerAuth.js";
+// import { requireBearerAuth } from "@modelcontextprotocol/sdk/server/auth/middleware/bearerAuth.js";
 import { mcp } from "./middleware.js";
 import server from "./server.js";
 
