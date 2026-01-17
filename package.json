@@ -1,0 +1,29 @@
+{
+  "name": "leadswap",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shoezaz/LeadSwap.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/shoezaz/LeadSwap/issues"
+  },
+  "homepage": "https://github.com/shoezaz/LeadSwap#readme",
+  "devDependencies": {
+    "@types/node": "^25.0.9",
+    "dotenv": "^17.2.3",
+    "exa-js": "^2.0.12",
+    "puppeteer-core": "^24.35.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
+}
