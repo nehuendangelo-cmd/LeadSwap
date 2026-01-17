@@ -1,6 +1,6 @@
 import { McpServer } from "skybridge/server";
 import { z } from "zod";
-import type { ICP, Lead, ScoredLead, ScoringResult } from "./types.js";
+import type { ICP, Lead, ScoringResult } from "./types.js";
 import { parseICPDescription, generateICPId, formatICPSummary } from "./services/icp-parser.js";
 import { scoreLeads, searchLeadsWithICP } from "./services/lead-scorer.js";
 
