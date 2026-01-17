@@ -26,21 +26,33 @@ classification:
 
 ## Executive Summary
 
-LeadSwap is an AI-powered lead qualification platform that validates lead quality in real-time—**before purchase**—reducing lead acquisition costs by 50-70% while tripling conversion rates. Built on MCP infrastructure with ChatGPT Apps SDK, Exa.ai semantic search, and Dust AI orchestration, LeadSwap deploys autonomous AI agents that analyze ICP fit and contact authenticity in seconds.
+LeadSwap is an AI-powered lead qualification platform that validates lead quality in real-time—**before purchase**—reducing lead acquisition costs by 50-70% while tripling conversion rates. Built on MCP-native architecture with ChatGPT Apps SDK, Exa.ai temporal search, Lightpanda ultra-fast browser, and Dust AI orchestration, LeadSwap deploys autonomous AI agents that analyze ICP fit, contact authenticity, and **buying intent signals** in seconds.
 
-**The Problem:** B2B companies waste hundreds of thousands of euros monthly on unusable leads (60-80% rejection rate). Current solutions validate AFTER purchase when damage is done. SDRs burn 60% of their time qualifying garbage data instead of selling.
+**The Problem:** B2B companies waste hundreds of thousands of euros monthly on unusable leads (60-80% rejection rate). Current solutions validate AFTER purchase when damage is done. Legacy tools like Apollo/ZoomInfo provide static data without intent signals—they can't tell you if a lead posted about your problem yesterday or if their company just raised €50M.
 
-**The Solution:** LeadSwap validates BEFORE you buy. Upload any lead list to our ChatGPT interface, define your ICP conversationally, and receive tiered validation results (Tier 1/2/Rejected) in 5-10 minutes with actionable insights on why leads were rejected and how to improve future purchases.
+**The Solution:** LeadSwap validates BEFORE you buy with real-time intent signals. Upload any lead list to our ChatGPT interface, define your ICP conversationally, and receive tiered validation results (Tier 1/2/Rejected) in 5-10 minutes with actionable insights on why leads were rejected, **buying intent signals** (recent posts about pain points, funding events, job changes), and how to improve future purchases.
 
 **Core Innovation:**
-- AI-first validation using Exa.ai semantic search (not static databases)
-- Conversational ChatGPT interface (zero learning curve)
-- Pre-purchase validation workflow (validate BEFORE spending budget)
-- Actionable rejection insights with exact credit savings calculation
+- **Intent Signals Layer:** Exa.ai temporal search detects recent posts about pain points, funding announcements, job changes (last 30-90 days)
+- **MCP-Native Architecture:** Lightpanda MCP tools (10x faster than Chrome) for web validation at scale
+- **AI-first validation:** Exa.ai semantic search + Lightpanda web parsing (not static databases)
+- **Conversational ChatGPT interface:** Zero learning curve, natural language queries
+- **Pre-purchase validation workflow:** Validate BEFORE spending budget (not after)
+- **Actionable rejection insights:** Exact credit savings calculation + Apollo filter recommendations
+
+**Technical Stack:**
+- **Frontend:** ChatGPT Apps SDK (conversational interface)
+- **AI Orchestration:** Dust AI agents (workflow + memory management)
+- **MCP Infrastructure:** Alpic (MCP server hosting)
+- **Semantic Search:** Exa.ai API (ICP matching + temporal intent signals)
+- **Web Validation:** Lightpanda MCP (ultra-fast headless browser, 10x faster than Chrome)
+- **Data Enrichment (V2):** Full Enrich API (firmographic data, post-MVP)
 
 **Target Users:** Founders/CEOs (early-stage startups), Growth Marketing Managers (scale-ups), Lead Gen Specialists (agencies)
 
 **MVP Success Criteria (Month 3):** €10k+ MRR, 50-100 paying users, 50%+ retention, 500k+ leads validated
+
+**Killer Differentiator vs Apollo/ZoomInfo:** We're the only solution combining pre-purchase validation + real-time intent signals. Apollo can't tell you a lead posted "our lead quality is terrible" 12 days ago. We can.
 
 ## Success Criteria
 
@@ -141,16 +153,27 @@ LeadSwap is an AI-powered lead qualification platform that validates lead qualit
 - CSV upload only (no API integrations yet)
 - English language only
 
-**2. Lead Validation Engine (Exa.ai + Dust AI Scoring)**
-- Exa.ai semantic search: Verifies contact exists via web mentions
-- Exa.ai company validation: Confirms company matches ICP criteria
-- Dust AI orchestration: Scores each lead 0-100 based on ICP fit + contextual signals
-- Output tiers: Tier 1 (80-100), Tier 2 (50-79), Rejected (0-49)
+**2. Lead Validation Engine (Exa.ai + Lightpanda + Dust AI Scoring)**
+- **Exa.ai semantic search:** Verifies contact exists via web mentions (LinkedIn, company websites, articles, conference talks)
+- **Exa.ai company validation:** Confirms company matches ICP criteria (industry, size, recent activity signals)
+- **Lightpanda MCP web validation:** Ultra-fast headless browser (10x faster than Chrome) for company website parsing and verification
+- **Dust AI orchestration:** Scores each lead 0-100 based on ICP fit + contextual signals + intent signals
+- **Output tiers:** Tier 1 (80-100), Tier 2 (50-79), Rejected (0-49)
 - Validation based on publicly accessible web data only
 - No email deliverability verification in MVP
 - No firmographic enrichment in MVP
 
-**3. Actionable Insights on Rejections (Priority 1)**
+**3. Intent Signals Detection (Priority 2 - KILLER FEATURE)**
+- **Exa.ai temporal search:** Detect recent posts about pain points (last 30 days)
+  - Example: Lead posted "our lead quality is terrible" on LinkedIn 12 days ago
+- **Funding signals:** Company raised funding in last 90 days (Series A/B/C announcements)
+- **Job change signals:** Lead changed job/title in last 6 months (new role = buying window)
+- **Hiring spike signals:** Company has 10+ open positions (growth phase = higher budget)
+- **Intent score boost:** +10 to +40 points added to base ICP score based on signal strength
+- **Intent insights display:** "🔥 High Intent: Posted about data quality issues 12 days ago"
+- **Temporal filtering:** Only signals from last 30-90 days (stale signals ignored)
+
+**4. Actionable Insights on Rejections (Priority 1)**
 - Pattern analysis on rejected leads (company size, title, industry, stale data)
 - Actionable recommendations: "Adjust Apollo filters to exclude companies <100 employees"
 - ROI impact estimation: "Applying these insights will save €2,340 on your next purchase"
@@ -158,7 +181,7 @@ LeadSwap is an AI-powered lead qualification platform that validates lead qualit
 - Pattern detection on categorical fields only
 - Recommendations limited to Apollo/ZoomInfo filter adjustments
 
-**4. Intelligent Deduplication (Priority 4)**
+**5. Intelligent Deduplication (Priority 4)**
 - Stores hash of every validated lead (email + LinkedIn URL + company domain)
 - Detects duplicates from previous validations on new upload
 - Shows previous status and cost savings from skipping re-validation
@@ -166,7 +189,7 @@ LeadSwap is an AI-powered lead qualification platform that validates lead qualit
 - Email exact match only (no fuzzy matching)
 - 12-month memory window
 
-**5. Basic ICP Definition**
+**6. Basic ICP Definition**
 - Conversational ICP collection via ChatGPT
 - Captures: Industry, Company Size, Geography, Target Titles, Must-have/Must-exclude criteria
 - Stores ICP in Dust memory for all future validations
@@ -355,25 +378,36 @@ LeadSwap workflow 10-15 minutes :
 ### Lead Validation & Scoring
 
 - **FR9**: System validates each lead against user's defined ICP using Exa.ai semantic search
-- **FR10**: System verifies contact existence via web mentions (LinkedIn, company websites, articles, conference talks)
+- **FR10**: System verifies contact existence via web mentions using Lightpanda MCP tools (LinkedIn, company websites, articles, conference talks)
 - **FR11**: System confirms company matches ICP criteria (industry, size, recent activity signals)
-- **FR12**: System scores each lead 0-100 based on ICP fit + contextual validation signals
+- **FR12**: System scores each lead 0-100 based on ICP fit + contextual validation signals + intent signals
 - **FR13**: System categorizes leads into three tiers:
-  - Tier 1 (80-100): High ICP match + strong context validation
+  - Tier 1 (80-100): High ICP match + strong context validation + intent signals
   - Tier 2 (50-79): Medium ICP match or partial context validation
   - Rejected (0-49): Poor ICP match or insufficient validation
-- **FR14**: System completes batch validation in <10 seconds per lead (500 leads in 5-10 minutes)
+- **FR14**: System completes batch validation in <10 seconds per lead (500 leads in 5-10 minutes using Lightpanda ultra-fast browser)
+
+### Intent Signals Detection
+
+- **FR15**: System detects recent posts about pain points using Exa.ai temporal search (last 30 days)
+- **FR16**: System searches for funding announcements related to lead's company (last 90 days)
+- **FR17**: System identifies job changes or new roles for leads (last 6 months)
+- **FR18**: System detects hiring spikes by analyzing company job postings using Lightpanda web parsing
+- **FR19**: System applies intent score boost (+10 to +40 points) to base ICP score based on signal strength
+- **FR20**: System displays intent insights with emoji indicators ("🔥 High Intent: Posted about data quality issues 12 days ago")
+- **FR21**: System filters out stale intent signals (older than 90 days ignored)
 
 ### Validation Results & Insights
 
-- **FR15**: Users receive tiered validation results showing count and percentage for each tier
-- **FR16**: Users can query results conversationally ("Show me Tier 1 leads", "Why were these rejected?")
-- **FR17**: System provides lead-by-lead validation details with rejection reasoning for manual review
-- **FR18**: System analyzes rejection patterns across categorical fields (company size, title, industry, staleness)
-- **FR19**: System generates actionable recommendations to improve future lead purchases ("Adjust Apollo to 200+ employees")
-- **FR20**: System calculates and displays exact credit savings (euros avoided by rejecting bad leads)
-- **FR21**: System estimates ROI impact of applying recommendations ("Save €2,340 on next purchase")
-- **FR22**: System displays historical comparison showing current vs previous qualification rates
+- **FR22**: Users receive tiered validation results showing count and percentage for each tier
+- **FR23**: Users can query results conversationally ("Show me Tier 1 leads", "Why were these rejected?", "Show me leads with high intent")
+- **FR24**: System provides lead-by-lead validation details with rejection reasoning and intent signals for manual review
+- **FR25**: System analyzes rejection patterns across categorical fields (company size, title, industry, staleness)
+- **FR26**: System generates actionable recommendations to improve future lead purchases ("Adjust Apollo to 200+ employees")
+- **FR27**: System calculates and displays exact credit savings (euros avoided by rejecting bad leads)
+- **FR28**: System estimates ROI impact of applying recommendations ("Save €2,340 on next purchase")
+- **FR29**: System displays historical comparison showing current vs previous qualification rates
+
 
 ### Deduplication & Memory
 
@@ -479,6 +513,27 @@ LeadSwap workflow 10-15 minutes :
 
 **NFR14: Export Data Quality**
 - Exported CSV maintains original data integrity (no data loss)
-- Includes all original fields + LeadSwap tier scores and timestamps
+- Includes all original fields + LeadSwap tier scores, intent signals, and timestamps
 - **Why critical**: Users need to import validated leads into CRMs
+
+### MCP Architecture & Intent Signals
+
+**NFR15: Lightpanda MCP Integration**
+- Lightpanda ultra-fast browser integration via MCP protocol (10x faster than Chrome)
+- MCP tools used: `search`, `goto`, `markdown`, `links` for web validation
+- Instant startup time (<100ms vs Chrome's 2-3 seconds)
+- **Why critical**: Enables batch validation of 8,000 leads in 10-15 minutes (vs 1+ hour with Chrome)
+- **Measurement**: Monitor Lightpanda MCP response times and memory footprint
+
+**NFR16: Exa.ai Temporal Search Accuracy**
+- Intent signal detection accuracy >80% (signals must be recent and relevant)
+- Temporal filtering: Only surface signals from last 30-90 days
+- False positive rate <20% (avoid showing stale or irrelevant intent signals)
+- **Why critical**: Intent signals are killer differentiator vs Apollo/ZoomInfo
+- **Measurement**: User feedback on intent signal relevance ("Was this insight useful?")
+
+**NFR17: Intent Signal Processing Speed**
+- Intent signal detection completes in parallel with ICP validation (<10 seconds per lead)
+- No additional latency added to validation pipeline
+- **Why critical**: Users expect fast results (5-10 min for 500 leads including intent signals)
 
