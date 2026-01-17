@@ -1,5 +1,5 @@
 ---
-stepsCompleted: ['step-01-init', 'step-02-discovery', 'step-03-success', 'step-04-journeys', 'step-05-domain-skipped', 'step-06-innovation-skipped', 'step-07-project-type-skipped', 'step-09-functional']
+stepsCompleted: ['step-01-init', 'step-02-discovery', 'step-03-success', 'step-04-journeys', 'step-05-domain-skipped', 'step-06-innovation-skipped', 'step-07-project-type-skipped', 'step-09-functional', 'step-10-nonfunctional', 'step-11-polish', 'step-12-complete']
 inputDocuments: 
   - '_bmad-output/planning-artifacts/product-brief-LeadSwap-2026-01-17.md'
   - 'chatgptui.md'
@@ -23,6 +23,24 @@ classification:
 
 **Author:** Developer
 **Date:** 2026-01-17
+
+## Executive Summary
+
+LeadSwap is an AI-powered lead qualification platform that validates lead quality in real-time—**before purchase**—reducing lead acquisition costs by 50-70% while tripling conversion rates. Built on MCP infrastructure with ChatGPT Apps SDK, Exa.ai semantic search, and Dust AI orchestration, LeadSwap deploys autonomous AI agents that analyze ICP fit and contact authenticity in seconds.
+
+**The Problem:** B2B companies waste hundreds of thousands of euros monthly on unusable leads (60-80% rejection rate). Current solutions validate AFTER purchase when damage is done. SDRs burn 60% of their time qualifying garbage data instead of selling.
+
+**The Solution:** LeadSwap validates BEFORE you buy. Upload any lead list to our ChatGPT interface, define your ICP conversationally, and receive tiered validation results (Tier 1/2/Rejected) in 5-10 minutes with actionable insights on why leads were rejected and how to improve future purchases.
+
+**Core Innovation:**
+- AI-first validation using Exa.ai semantic search (not static databases)
+- Conversational ChatGPT interface (zero learning curve)
+- Pre-purchase validation workflow (validate BEFORE spending budget)
+- Actionable rejection insights with exact credit savings calculation
+
+**Target Users:** Founders/CEOs (early-stage startups), Growth Marketing Managers (scale-ups), Lead Gen Specialists (agencies)
+
+**MVP Success Criteria (Month 3):** €10k+ MRR, 50-100 paying users, 50%+ retention, 500k+ leads validated
 
 ## Success Criteria
 
@@ -383,4 +401,84 @@ LeadSwap workflow 10-15 minutes :
 - **FR35**: System responds conversationally with validation results, insights, and recommendations
 - **FR36**: Users can ask follow-up questions about validation results
 - **FR37**: System provides contextual help when users ask "how does this work?" or similar queries
+
+## Non-Functional Requirements
+
+### Performance
+
+**NFR1: Lead Validation Speed**
+- Batch validation completes in <10 seconds per lead
+- 500 leads validated in 5-10 minutes maximum
+- 8,000 leads validated in 10-15 minutes maximum
+- **Why critical**: User "aha!" moment depends on seeing results quickly (Marc's journey)
+
+**NFR2: System Response Time**
+- ChatGPT interface responds to queries in <2 seconds
+- CSV upload confirmation appears in <5 seconds
+- **Why critical**: Conversational UX requires immediate feedback
+
+**NFR3: Concurrent Processing**
+- System handles multiple user uploads simultaneously without degradation
+- Single user can process multiple batches sequentially without waiting
+
+### Cost Efficiency (Critical for MVP Economics)
+
+**NFR4: Validation Cost Per Lead**
+- Cost per lead validation <€0.30 (Exa.ai + Dust AI combined)
+- **Why critical**: Gross margin target >70% (selling at €0.50-1.00/lead)
+- **Measurement**: Monitor API costs from Exa.ai and Dust per validation batch
+
+**NFR5: API Cost Optimization**
+- System minimizes redundant API calls through caching and deduplication
+- Failed validations do not incur double API costs (retry logic)
+
+### Reliability & Availability
+
+**NFR6: System Uptime**
+- 99%+ availability during hackathon demo and early user testing
+- **Why critical**: Product Hunt launch and early users need reliable access
+- Note: 99.5%+ target post-MVP for production
+
+**NFR7: Error Handling**
+- CSV upload errors provide clear user guidance (format issues, missing fields)
+- Exa.ai API failures gracefully degrade (mark leads as "unable to validate" instead of crashing)
+- Partial batch completions save progress (if 400/500 leads validated, don't lose work)
+
+### Security & Data Isolation (MVP Minimum)
+
+**NFR8: Multi-Tenant Data Isolation**
+- Complete data separation between user accounts (zero data leakage)
+- User A cannot access User B's uploaded leads or validation history
+- **Why critical**: Trust requirement for B2B SaaS (Sarah and Claire won't use without this)
+
+**NFR9: Data Encryption**
+- Data encrypted in transit (HTTPS for all communications)
+- Data encrypted at rest for stored leads and ICP definitions
+- **Why MVP minimum**: Basic security hygiene for handling business data
+
+**NFR10: Authentication**
+- OAuth via ChatGPT Apps SDK handles user authentication
+- No custom password management (reduces security risk for MVP)
+
+### Scalability (MVP Target)
+
+**NFR11: User Capacity**
+- System supports 50-100 concurrent users without performance degradation
+- **Why this target**: Matches 3-month MVP goal (50-100 active paying users)
+
+**NFR12: Daily Validation Volume**
+- System handles 100,000+ lead validations per day
+- **Why this target**: 100 users × 1,000 leads/user average = 100k/day capacity
+
+### Integration & Data Compatibility
+
+**NFR13: CSV Format Support**
+- System accepts standard CSV formats from Apollo, ZoomInfo exports
+- Handles common field variations (email/Email/EMAIL, company/Company Name)
+- **Why critical**: Users upload existing lists from lead vendors (no reformatting friction)
+
+**NFR14: Export Data Quality**
+- Exported CSV maintains original data integrity (no data loss)
+- Includes all original fields + LeadSwap tier scores and timestamps
+- **Why critical**: Users need to import validated leads into CRMs
 
